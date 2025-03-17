@@ -35,25 +35,27 @@ fetchWithMiddleware('https://api.example.com/secure/data')
 
 ## Or just drop the code in your project
 
+Middlefetch is super simple and can just be dropped into your project.
+
 ```ts
 export type Fetcher = typeof fetch;
-export type FetchRequester = (request: Request) => Promise<Response>;
-export type FetchMiddleware = (next: FetchRequester) => FetchRequester;
+export type FetchRequester = (request: Request) => Promise<Response>
+export type FetchMiddleware = (next: FetchRequester) => FetchRequester
 
 export function createFetcher(fetch: Fetcher, middlewares: FetchMiddleware[]): Fetcher {
   return async (...args) => {
-    const copy = [...middlewares];
+    const copy = [...middlewares]
 
     const next: FetchRequester = async (req) => {
-      const middleware = copy.shift();
+      const middleware = copy.shift()
       if (middleware == null) {
-        return await fetch(req);
+        return await fetch(req)
       } else {
-        return await middleware(next)(req);
+        return await middleware(next)(req)
       }
-    };
+    }
 
-    return await next(new Request(...args));
+    return await next(new Request(...args))
   };
 }
 ```
