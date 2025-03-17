@@ -17,13 +17,9 @@
     "branches": [
       "main"
     ],
-    "dryRun": true,
     "plugins": [
       [
-        "@semantic-release/npm",
-        {
-          "npmPublish": false
-        }
+        "@semantic-release/npm"
       ]
     ]
   },
