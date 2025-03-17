@@ -1,27 +1,31 @@
-import globals from 'globals'
-import pluginJs from '@eslint/js'
+import eslint from '@eslint/js'
 import tseslint from 'typescript-eslint'
-import love from 'eslint-config-love'
 import stylistic from '@stylistic/eslint-plugin'
 
-export default [
-  { ignores: ['lib/**/*'] },
-  { ...love, files: ['**/*.{js,mjs,cjs,ts}'] },
-  { languageOptions: { globals: { ...globals.browser, ...globals.node } } },
-  pluginJs.configs.recommended,
-  ...tseslint.configs.recommended,
-  stylistic.configs.recommended,
-  {
-    rules: {
-      '@typescript-eslint/await-thenable': 'off',
-      '@typescript-eslint/require-await': 'off',
+export default tseslint.config(
+  [
+    eslint.configs.recommended,
+    stylistic.configs.recommended,
+    tseslint.configs.recommendedTypeChecked,
+    {
+      languageOptions: {
+        parserOptions: {
+          project: './tsconfig.eslint.json',
+          tsconfigRootDir: import.meta.dirname,
+        },
+      },
     },
-  },
-  {
-    files: ['tests/**/*.{js,ts,jsx,tsx}'],
-    rules: {
-      '@typescript-eslint/no-magic-numbers': 'off',
-      '@typescript-eslint/no-floating-promises': 'off',
+    {
+      ignores: ['lib/**/*'],
     },
-  },
-]
+    {
+      files: ['tests/**/*.{js,ts,jsx,tsx}'],
+      rules: {
+        '@typescript-eslint/await-thenable': 'off',
+        '@typescript-eslint/require-await': 'off',
+        '@typescript-eslint/no-magic-numbers': 'off',
+        '@typescript-eslint/no-floating-promises': 'off',
+      },
+    },
+  ],
+)
