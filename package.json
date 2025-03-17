@@ -9,7 +9,23 @@
     "clean": "del-cli ./lib",
     "build": "npm run clean && tsc -p ./tsconfig.json",
     "lint": "eslint .",
-    "test": "node --experimental-strip-types --test --experimental-test-coverage --test-coverage-include=src/**/* --test-reporter=spec --test-reporter=lcov --test-reporter-destination=stdout --test-reporter-destination=lcov.info"
+    "test": "node --experimental-strip-types --test --experimental-test-coverage --test-coverage-include=src/**/* --test-reporter=spec --test-reporter=lcov --test-reporter-destination=stdout --test-reporter-destination=lcov.info",
+    "release": "semantic-release",
+    "prepack": "npm run build"
+  },
+  "release": {
+    "branches": [
+      "main"
+    ],
+    "dryRun": true,
+    "plugins": [
+      [
+        "@semantic-release/npm",
+        {
+          "npmPublish": false
+        }
+      ]
+    ]
   },
   "repository": {
     "type": "git",
@@ -34,6 +50,7 @@
     "eslint": "^9.22.0",
     "eslint-config-love": "^119.0.0",
     "globals": "^16.0.0",
+    "semantic-release": "^24.2.3",
     "typescript": "^5.8.2",
     "typescript-eslint": "^8.26.1"
   }
