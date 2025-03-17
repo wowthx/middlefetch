@@ -13,6 +13,12 @@
     "release": "semantic-release",
     "prepack": "npm run build"
   },
+  "files": [
+    "lib/**/*"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "release": {
     "branches": [
       "main"
