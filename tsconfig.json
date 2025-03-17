@@ -5,7 +5,7 @@
     "module": "nodenext",
     "moduleResolution": "NodeNext",
     "outDir": "./lib/",
-    "declarationDir": "./lib/types",
+    "declarationDir": "./lib",
     "strict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
