@@ -1,0 +1,14 @@
+{
+    "name": "Middlefetch Dev Container",
+    "dockerComposeFile": "./compose.yaml",
+    "service": "devcontainer",
+    "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+    "customizations": {
+      "vscode": {
+        "extensions": [
+          "dbaeumer.vscode-eslint",
+          "ryanluker.vscode-coverage-gutters"
+        ]
+      }
+    }
+  }
